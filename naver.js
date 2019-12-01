@@ -97,8 +97,8 @@ const naverCrawler = async (code) => {
         floorInfo: articleAddition.floorInfo || '', // 층
         financePrice: articlePrice.financePrice || '', // 융자
         moveInTypeName: articleDetail.moveInTypeName || '', // 입주가능일
-        realtorName: articleRealtor.realtorName || '', // 부동산 이름
-        representativeTelNo: articleRealtor.representativeTelNo || '', // 부동산 대표번호
+        realtorName: articleRealtor? articleRealtor.realtorName : articleAddition.sellerName, // 부동산 이름
+        representativeTelNo: articleRealtor? articleRealtor.representativeTelNo : articleAddition.sellerPhoneNum, // 부동산 대표번호
         aptParkingCount: articleDetail.aptParkingCount || '', // 총 주차 대수
         aptHouseholdCount: articleDetail.aptHouseholdCount || '', // 세대 수
         constructYearMonth: constructYearMonth || '', // 준공년월
