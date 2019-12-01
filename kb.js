@@ -10,12 +10,13 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const createCSVWriter = (area) => {
   return createCsvWriter({
     path: `result/${area}_kb.csv`,
-  header: [
-    { id: 'name', title: '단지이름' },
-    { id: 'size', title: '평형' },
-    { id: 'avgTrade', title: '평균 매매가' },
-    { id: 'avgCharter', title: '평균 전세가' }
-  ]
+    header: [
+      { id: 'name', title: '단지이름' },
+      { id: 'size', title: '평형' },
+      { id: 'avgTrade', title: '평균 매매가' },
+      { id: 'avgCharter', title: '평균 전세가' }
+    ],
+    encoding: 'utf8'
   });
 }
 
@@ -98,8 +99,10 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
          * 단지별 데이터 수집
          */
         for (let j = 1; j < cache[i].length; j++) {
-          const res = await kbCrawler(cache[i][j]);
-          output = output.concat(res);
+          if (cache[i][j]) {
+            const res = await kbCrawler(cache[i][j]);
+            output = output.concat(res);
+          }
         }
 
         /**

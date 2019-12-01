@@ -27,7 +27,8 @@ const createCSVWriter = (area) => {
       { id: 'aptHouseholdCount', title: '세대 수' },
       { id: 'constructYearMonth', title: '준공년월' },
       { id: 'detailDescription', title: '설명' }
-    ]
+    ],
+    encoding: 'utf8'
   });
 };
 
@@ -134,8 +135,10 @@ fs.createReadStream(`${__dirname}/resource/naver.csv`)
          * 단지별 데이터 수집
          */
         for (let j = 1; j < cache[i].length; j++) {
-          const res = await naverCrawler(cache[i][j]);
-          output = output.concat(res);
+          if (cache[i][j]) {
+            const res = await naverCrawler(cache[i][j]);
+            output = output.concat(res);
+          }
         }
 
         /**
