@@ -60,10 +60,10 @@ async function kbCrawler(code) {
         const avgCharter = cols.eq(5).text();
 
         datas.push({
-          name,
-          size,
-          avgTrade,
-          avgCharter
+          name: name || '',
+          size: size || '',
+          avgTrade: avgTrade || '',
+          avgCharter: avgCharter || ''
         });
       }
 

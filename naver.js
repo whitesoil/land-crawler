@@ -87,22 +87,22 @@ const naverCrawler = async (code) => {
       } = res.data;
 
       const data = {
-        articleName: articleAddition.articleName, // 단지이름
-        tradeTypeName: articleAddition.tradeTypeName, // 매물종류
-        areaName: articleAddition.areaName, // 공급면적
-        area2: articleAddition.area2, // 전용면적
-        dealOrWarrantPrc: articleAddition.dealOrWarrantPrc, // 매매가
-        buildingName: articleAddition.buildingName, //동
-        direction: articleAddition.direction, // 방향
-        floorInfo: articleAddition.floorInfo, // 층
-        financePrice: articlePrice.financePrice, // 융자
-        moveInTypeName: articleDetail.moveInTypeName, // 입주가능일,
-        realtorName: articleRealtor.realtorName, // 부동산 이름
-        representativeTelNo: articleRealtor.representativeTelNo, // 부동산 대표번호
-        aptParkingCount: articleDetail.aptParkingCount, // 총 주차 대수
-        aptHouseholdCount: articleDetail.aptHouseholdCount, // 세대 수
-        constructYearMonth: constructYearMonth, // 준공년월
-        detailDescription: articleDetail.detailDescription // 매물 설명
+        articleName: articleAddition.articleName || '', // 단지이름
+        tradeTypeName: articleAddition.tradeTypeName || '', // 매물종류
+        areaName: articleAddition.areaName || '', // 공급면적
+        area2: articleAddition.area2 || '', // 전용면적
+        dealOrWarrantPrc: articleAddition.dealOrWarrantPrc || '', // 매매가
+        buildingName: articleAddition.buildingName || '', //동
+        direction: articleAddition.direction || '', // 방향
+        floorInfo: articleAddition.floorInfo || '', // 층
+        financePrice: articlePrice.financePrice || '', // 융자
+        moveInTypeName: articleDetail.moveInTypeName || '', // 입주가능일
+        realtorName: articleRealtor.realtorName || '', // 부동산 이름
+        representativeTelNo: articleRealtor.representativeTelNo || '', // 부동산 대표번호
+        aptParkingCount: articleDetail.aptParkingCount || '', // 총 주차 대수
+        aptHouseholdCount: articleDetail.aptHouseholdCount || '', // 세대 수
+        constructYearMonth: constructYearMonth || '', // 준공년월
+        detailDescription: articleDetail.detailDescription || '' // 매물 설명
       };
 
       output.push(data);
