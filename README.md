@@ -4,11 +4,17 @@
 
 ## Set Up
 ```
+# 업데이트
+$ npm run update
+
 # 패키지 설치
 $ npm install
 
-# 실행
-$ npm start
+# 네이버 크롤러 실행
+$ npm run naver
+
+# KB 크롤러 실행
+$ npm run kb
 ```
 
 ## How To Use (KB)
