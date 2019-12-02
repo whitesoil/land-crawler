@@ -87,6 +87,7 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
     cache.push(row);
   })
   .on('end', async () => {
+    console.log("KB 시세의 데이터 수집을 시작합니다.")
     /**
      * 파싱된 CSV를 바탕으로 지역별 데이터 수집
      */
@@ -100,8 +101,12 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
          */
         for (let j = 1; j < cache[i].length; j++) {
           if (cache[i][j]) {
-            const res = await kbCrawler(cache[i][j]);
-            output = output.concat(res);
+            try {
+              const res = await kbCrawler(cache[i][j]);
+              output = output.concat(res);
+            } catch (e) {
+              console.error(e);
+            }
           }
         }
 
@@ -109,10 +114,11 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
          * CSV에 저장
          */
         await csvWriter.writeRecords(output);
+        console.log(`${i+1}. ${cache[i][0]} 데이터의 수집이 완료되었습니다.`);
       } catch (e) {
         console.error(e);
       }
     }
     
-    console.log("KB 시세의 데이터의 수집이 완료되었습니다.")
+    console.log("KB 시세의 데이터 수집이 완료되었습니다.")
   });
