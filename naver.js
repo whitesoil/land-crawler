@@ -140,6 +140,7 @@ fs.createReadStream(`${__dirname}/resource/naver.csv`)
             try {
               const res = await naverCrawler(cache[i][j]);
               output = output.concat(res);
+              console.log(`${i+1}-${cache[i][j]} 데이터의 수집이 완료되었습니다.`);
             } catch (e){
               console.error(e);
             }
