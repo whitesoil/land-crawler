@@ -105,7 +105,7 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
             try {
               const res = await kbCrawler(cache[i][j]);
               output = output.concat(res);
-              console.log(`${cache[i][0]}-${cache[i][j]} 데이터의 수집이 완료되었습니다.`);
+              console.log(`${cache[i][0]}, ${j+1}번째 ${cache[i][j]} 데이터의 수집이 완료되었습니다.`);
             } catch (e) {
               console.error(e);
             }
