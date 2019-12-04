@@ -87,12 +87,13 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
     cache.push(row);
   })
   .on('end', async () => {
-    console.log("KB 시세의 데이터 수집을 시작합니다.")
+    console.log("***KB 시세의 데이터 수집을 시작합니다.***")
     /**
      * 파싱된 CSV를 바탕으로 지역별 데이터 수집
      */
     for (let i = 0; i < cache.length; i = i + 1) {
       try {
+        console.log(`>>>${cache[i][0]} 데이터의 수집을 시작합니다.<<<`);
         const csvWriter = createCSVWriter(cache[i][0]); // 지역별로 다른 CSV 파일에 저장
         let output = [];
 
@@ -104,7 +105,7 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
             try {
               const res = await kbCrawler(cache[i][j]);
               output = output.concat(res);
-              console.log(`${i+1}-${cache[i][j]} 데이터의 수집이 완료되었습니다.`);
+              console.log(`${cache[i][0]}-${cache[i][j]} 데이터의 수집이 완료되었습니다.`);
             } catch (e) {
               console.error(e);
             }
@@ -115,11 +116,11 @@ fs.createReadStream(`${__dirname}/resource/kb.csv`)
          * CSV에 저장
          */
         await csvWriter.writeRecords(output);
-        console.log(`${i+1}. ${cache[i][0]} 데이터의 수집이 완료되었습니다.`);
+        console.log(`>>>${cache[i][0]} 데이터의 수집이 완료되었습니다.<<<`);
       } catch (e) {
         console.error(e);
       }
     }
     
-    console.log("KB 시세의 데이터 수집이 완료되었습니다.")
+    console.log("***KB 시세의 데이터 수집이 완료되었습니다.***")
   });
